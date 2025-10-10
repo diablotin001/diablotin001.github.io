@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>App 支持 / Support</title>
+  <meta name="description" content="Support page for the app — contact, FAQ, privacy.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="App Support">
+  <meta property="og:description" content="Contact support, FAQs and privacy policy.">
+  <meta name="theme-color" content="#0b84ff">
+  <style>
+    :root{--bg:#f7fafc;--card:#fff;--accent:#0b84ff;--muted:#666}
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; margin:0; background:var(--bg); color:#111}
+    .wrap{max-width:900px;margin:32px auto;padding:20px}
+    header{display:flex;gap:12px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;background:#eee;display:flex;align-items:center;justify-content:center;font-weight:700;color:#888}
+    h1{margin:0;font-size:20px}
+    p.lead{color:var(--muted);margin-top:6px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(10,10,10,0.06);margin-top:18px}
+    .grid{display:grid;gap:12px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none}
+    .small{font-size:13px;color:var(--muted)}
+    nav.lang{margin-left:auto}
+    nav.lang button{background:transparent;border:1px solid #ddd;padding:6px 10px;border-radius:8px;margin-left:6px;cursor:pointer}
+    dl{margin:0}
+    dt{font-weight:600;margin-top:12px}
+    dd{margin:6px 0 0 0;color:var(--muted)}
+    footer{margin-top:18px;font-size:13px;color:var(--muted)}
+    @media (max-width:600px){.wrap{margin:12px;padding:12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">LOGO</div>
+      <div>
+        <h1 id="title">应用支持 / App Support</h1>
+        <p class="lead" id="subtitle">常见问题、联系方式与隐私政策 — 支持邮箱和提交问题（GitHub Issues）。</p>
+      </div>
+      <nav class="lang">
+        <button onclick="setLang('zh')">简体中文</button>
+        <button onclick="setLang('en')">English</button>
+      </nav>
+    </header>
+
+    <section class="card" id="mainCard">
+      <div class="grid">
+        <div>
+          <h3 id="h-download">应用页面 / App page</h3>
+          <p class="small" id="p-download">App Store 页面：<a id="appstore-link" href="REPLACE_WITH_APPSTORE_URL" target="_blank">打开 App Store</a></p>
+        </div>
+
+        <div>
+          <h3 id="h-contact">联系我们 / Contact</h3>
+          <p class="small" id="p-contact">
+            邮箱（邮件）： <a id="mailto-link" href="mailto:diablotin.zhang@gmail.com">diablotin.zhang@gmail.com</a><br>
+            提交问题（推荐 — GitHub Issues）：<br>
+            <a id="issue-link" class="btn" href="#" target="_blank">创建支持请求</a>
+          </p>
+        </div>
+
+        <div>
+          <h3 id="h-faq">常见问题 / FAQ</h3>
+          <dl>
+            <dt id="q1">Q: 如何更新/重装看不到新版本？</dt>
+            <dd id="a1">A: 建议在 App Store 中手动更新，或删除后重新安装。检查 iOS 版本是否受支持。</dd>
+            <dt id="q2">Q: 如何导出数据/备份？</dt>
+            <dd id="a2">A: 本应用支持本地导出（设置里可见）。如需云同步，请在应用设置中启用。</dd>
+          </dl>
+        </div>
+
+        <div>
+          <h3 id="h-privacy">隐私 & 条款 / Privacy</h3>
+          <p class="small">隐私政策：<a id="privacy-link" href="REPLACE_WITH_PRIVACY_PAGE" target="_blank">查看隐私政策</a></p>
+          <p class="small">版本：<span id="app-version">v1.0.0</span></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>源码/支持页由 GitHub Pages 托管 — <a href="https://github.com/diablotin001/diablotin001.github.io" target="_blank">仓库</a></div>
+    </footer>
+  </div>
+
+<script>
+  // 预填 GitHub Issues 链接（用于提交支持请求）
+  const issueBase = "https://github.com/diablotin001/diablotin001.github.io/issues/new";
+  const prefillBody = encodeURIComponent("Device (设备):\nApp Version (应用版本):\niOS Version (系统版本):\n问题描述 / Steps to reproduce:\n预期结果:\n实际结果:\n附加截图或日志 (如果有):\n");
+  const issueUrl = `${issueBase}?labels=Support&title=%5BSupport%5D%20&body=${prefillBody}`;
+  document.getElementById('issue-link').href = issueUrl;
+
+  // 语言切换（简单实现）
+  const strings = {
+    zh: {
+      title:"应用支持 / App Support",
+      subtitle:"常见问题、联系方式与隐私政策 — 支持邮箱和提交问题（GitHub Issues）。",
+      hDownload:"应用页面 / App page",
+      pDownload:"App Store 页面：",
+      hContact:"联系我们 / Contact",
+      hFaq:"常见问题 / FAQ",
+      hPrivacy:"隐私 & 条款 / Privacy"
+    },
+    en: {
+      title:"App Support",
+      subtitle:"FAQ, contact and privacy. Contact by email or open a GitHub issue.",
+      hDownload:"App page",
+      pDownload:"Open in the App Store:",
+      hContact:"Contact",
+      hFaq:"FAQ",
+      hPrivacy:"Privacy & Terms"
+    }
+  };
+  function setLang(l){
+    const s = strings[l]||strings['zh'];
+    document.getElementById('title').textContent = s.title;
+    document.getElementById('subtitle').textContent = s.subtitle;
+    document.getElementById('h-download').textContent = s.hDownload;
+    document.getElementById('h-contact').textContent = s.hContact;
+    document.getElementById('h-faq').textContent = s.hFaq;
+    document.getElementById('h-privacy').textContent = s.hPrivacy;
+  }
+  // 自动根据浏览器语言
+  const navLang = navigator.language || navigator.userLanguage;
+  setLang(navLang && navLang.startsWith('en') ? 'en' : 'zh');
+</script>
+</body>
+</html>
